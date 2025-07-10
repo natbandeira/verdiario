@@ -1,38 +1,38 @@
-# 🌱 Estufa - API de Catalogação de Plantas
+# 🌱 Verdiário - API de Catalogação de Plantas
 
-Uma API RESTful simples e eficiente para catalogar e gerenciar plantas. Desenvolvida com foco em aprendizado de Node, TypeScript, Express, POO, testes unitários e boas práticas de desenvolvimento.
+Uma API RESTful para catalogar e gerenciar plantas, desenvolvida como parte de um projeto full stack com foco em TypeScript, programação orientada a objetos, testes e boas práticas no back e front-end.
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
-**Botaneiro** é uma aplicação voltada para entusiastas de plantas que desejam manter um controle organizado da sua coleção. Com ela, é possível registrar informações detalhadas sobre cada planta, desde dados básicos até histórico de cuidados e tratamentos.
+**Verdiário** é uma aplicação voltada para entusiastas de plantas que desejam manter um controle organizado da sua coleção. Com ela, é possível registrar informações detalhadas sobre cada planta, desde dados básicos até histórico de cuidados e tratamentos.
 
-## 🌿 Funcionalidades
+## Funcionalidades
 
-- **CRUD Completo**: Criar, ler, atualizar e deletar plantas
-- **Catalogação Detalhada**: Informações completas sobre cada planta
-- **Classificação Científica**: Nome científico e dados botânicos
-- **Histórico de Cuidados**: Adubação, tratamentos e controle de pragas
-- **Controle Temporal**: Datas de chegada, últimos cuidados e status
+- **CRUD Completo**: criar, ler, atualizar e deletar plantas
+- **Catalogação Detalhada**:
+  - **Classificação Científica**: nome científico e dados botânicos
+  - **Histórico de Cuidados**: adubação, tratamentos e controle de pragas
+  - **Controle Temporal**: datas de chegada, últimos cuidados e status
 
-## 🖥️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
-### Backend (Em Desenvolvimento)
-- **Node.js** - Runtime JavaScript
-- **TypeScript** - Superset tipado do JavaScript
-- **Express.js** - Framework web minimalista
-- **MongoDB** - Banco de dados NoSQL
-- **Mongoose** - ODM para MongoDB
+### Backend (em desenvolvimento)
+- Node.js
+- TypeScript
+- Express.js
+- MongoDB
+- Mongoose
 
-### Frontend (Em Desenvolvimento)
-- **React** - Biblioteca para interfaces de usuário
-- **Next.js** - Framework React para produção
+### Frontend (em desenvolvimento)
+- React
+- Next.js
 
 ### Ferramentas e Documentação
-- **Swagger** - Documentação interativa da API
-- **Jest** - Framework para testes unitários
-- **ESLint** - Linter para qualidade de código
+- Swagger
+- Jest
+- ESLint
 
-## 📦 Instalação e Configuração
+## Instalação e Configuração
 
 ### Pré-requisitos
 - Node.js (v16 ou superior)
@@ -72,41 +72,19 @@ npm run dev
 npm start
 ```
 
-## 📡 Endpoints da API
+## Endpoints da API
 
 - `POST /planta` - Cria nova planta
 - `GET /planta/:nomePlanta` - Mostra uma planta específica
 - `PUT /planta/:nomePlanta` - Atualiza uma planta específica
 - `GET /estufa` - Lista todas as plantas
 
-### 📋 Próximas Features
+### Próximas Features
 - [ ] Sistema de autenticação
 - [ ] Upload de imagens das plantas
 - [ ] Lembretes de cuidados
 - [ ] API terceira com mais infos de plantas
 
-## 🤝 Contribuindo
-
-Contribuições são sempre bem-vindas! Este é um projeto de estudos, então sugestões e melhorias são muito apreciadas.
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/NovaFeature`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Push para a branch (`git push origin feature/NovaFeature`)
-5. Abra um Pull Request
-
-## 📝 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👩‍💻 Criado por
-
-**Natália Bandeira**
-- GitHub: [@natbandeira](https://github.com/natbandeira)
-- LinkedIn: [Natália Bandeira](https://linkedin.com/in/nataliabandeira)
-
----
-
 <!-- <div align="center">
-  <sub>Feito com 💚 e muito ☕ por uma apaixonada por plantas e tecnologia!</sub>
+  <sub>LinkedIn: [Natália Bandeira](https://linkedin.com/in/nataliabandeira)</sub>
 </div> -->
