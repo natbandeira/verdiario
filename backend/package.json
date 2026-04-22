@@ -2,12 +2,19 @@
   "name": "verdiario",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js"
-},
-  "keywords": ["plants", "api", "typescript", "express", "mongodb"],
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "keywords": [
+    "plants",
+    "api",
+    "typescript",
+    "express",
+    "mongodb"
+  ],
   "author": "Natalia Bandeira - nbandeira7@gmail.com",
   "license": "MIT",
   "description": "API RESTful para catalogação e gerenciamento de plantas",
@@ -22,6 +29,7 @@
     "@types/node": "^22.15.7",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.8.3"
   }
 }
