@@ -1,5 +1,7 @@
 import { PlantModel, IPlant, IPlantDocument } from '../models/plant-model'
+
 export class PlantService {
+    
     static async criarPlanta(novaPlanta: IPlant): Promise<IPlantDocument> {
         return await PlantModel.create(novaPlanta);
     };

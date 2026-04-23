@@ -1,12 +1,13 @@
 import mongoose, { Schema , Document } from 'mongoose';
+
 export interface IPlant {
     nome: string;
     nomeCientifico?: string;
-    dataChegada: string;
+    dataChegada: Date;
     origem: string;
-    dataUltimaAdubacao?: string;
+    dataUltimaAdubacao?: Date;
     tipoAdubo?: string;
-    dataUltimoTratamento?: string;
+    dataUltimoTratamento?: Date;
     tipoTratamento?: string;
     nomePraga?: string;
     plantaAtiva?: boolean;
@@ -14,11 +15,11 @@ export interface IPlant {
 export interface IPlantDocument extends Document {
     nome: string;
     nomeCientifico?: string;
-    dataChegada: string;
+    dataChegada: Date;
     origem: string;
-    dataUltimaAdubacao?: string;
+    dataUltimaAdubacao?: Date;
     tipoAdubo?: string;
-    dataUltimoTratamento?: string;
+    dataUltimoTratamento?: Date;
     tipoTratamento?: string;
     nomePraga?: string;
     plantaAtiva?: boolean;
@@ -27,16 +28,16 @@ export interface IPlantDocument extends Document {
 const PlantSchema: Schema = new Schema<IPlantDocument>({
     nome: { type: String, required: true },
     nomeCientifico: { type: String},
-    dataChegada: { type: String, required: true },
+    dataChegada: { type: Date, required: true },
     origem: { type: String, required: true },
-    dataUltimaAdubacao: { type: String },
+    dataUltimaAdubacao: { type: Date },
     tipoAdubo: { type: String },
-    dataUltimoTratamento: { type: String },
+    dataUltimoTratamento: { type: Date },
     tipoTratamento: { type: String },
     nomePraga: { type: String },
     plantaAtiva: { type: Boolean },
 }, {
-  timestamps: true // add createdAt e updatedAt automaticamente
+  timestamps: true
 });
 
 export const PlantModel = mongoose.model<IPlantDocument>('Plant', PlantSchema);
