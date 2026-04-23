@@ -1,10 +1,15 @@
 import { Request , Response } from 'express';
 import { IPlant } from '../models/plant-model'
 import { PlantService } from '../services/plant-service';
+import { createPlantSchema } from '../validators/plant-validator';
+
 export class PlantController { 
+
     async criarPlanta (req: Request, res: Response): Promise<void> {
         try {
-            const novaPlanta : IPlant = await PlantService.criarPlanta(req.body);
+            const plantaParsed = createPlantSchema.parse(req.body);
+            const novaPlanta = await PlantService.criarPlanta(plantaParsed);
+
             res.status(201).json({
                 message: `Plantinha '${novaPlanta.nome}' cadastrada com sucesso :D`,
                 data: novaPlanta
@@ -17,13 +22,29 @@ export class PlantController {
        }
     };
 
-    async atualizarPlanta (req: Request, res: Response): Promise<void> {
+    async atualizarPlanta (req: Request, res: Response): Promise<any> {
         try {
             const nomePlanta = req.body.nome;
+
+            if (!nomePlanta || nomePlanta === 0) {
+                return res.status(400).json({
+                    message: "Nome da planta é obrigatório!"
+                })
+            }
+            
+            const plantaExiste = await PlantService.mostrarPlanta(nomePlanta);
+   
+            if (plantaExiste.length === 0) {
+                return res.status(404).json({
+                    message: `A plantinha ${nomePlanta} não existe na estufa`
+                })
+            }
+
             const novosDados = req.body;
+
             const plantaAtualizada = await PlantService.atualizarPlanta(nomePlanta, novosDados);
             res.status(200).json({
-                message: `Plantinha '${nomePlanta}' ataulizada com sucesso :D`
+                message: `Plantinha '${nomePlanta}' atualizada com sucesso :D`
             })
         } catch (error) {
             console.error('Falha ao atualizar a plantinha x_x');
@@ -34,9 +55,16 @@ export class PlantController {
         }
     };
 
-    async mostrarPlanta (req: Request, res: Response): Promise<void> {
+    async mostrarPlanta (req: Request, res: Response): Promise<any> {
         try {
-            const nomePlanta = req.params.nomePlanta;
+            const nomePlanta = req.params.nomePlanta as string;
+
+            if (!nomePlanta) {
+                return res.status(400).json({
+                    message: "Nome da planta é obrigatório!"
+                })
+            }
+
             const planta = await PlantService.mostrarPlanta(nomePlanta);
             res.status(200).json(planta);
         } catch (error) {
