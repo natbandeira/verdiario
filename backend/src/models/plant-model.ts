@@ -2,7 +2,7 @@ import mongoose, { Schema , Document } from 'mongoose';
 export interface IPlant {
     nome: string;
     nomeCientifico?: string;
-    dataChegada: string;
+    dataChegada: Date;
     origem: string;
     dataUltimaAdubacao?: string;
     tipoAdubo?: string;
@@ -14,7 +14,7 @@ export interface IPlant {
 export interface IPlantDocument extends Document {
     nome: string;
     nomeCientifico?: string;
-    dataChegada: string;
+    dataChegada: Date;
     origem: string;
     dataUltimaAdubacao?: string;
     tipoAdubo?: string;
@@ -27,7 +27,7 @@ export interface IPlantDocument extends Document {
 const PlantSchema: Schema = new Schema<IPlantDocument>({
     nome: { type: String, required: true },
     nomeCientifico: { type: String},
-    dataChegada: { type: String, required: true },
+    dataChegada: { type: Date, required: true },
     origem: { type: String, required: true },
     dataUltimaAdubacao: { type: String },
     tipoAdubo: { type: String },
