@@ -1,29 +1,31 @@
 import { Request , Response } from 'express';
-import { IPlant } from '../models/plant-model'
+import { IPlant } from '../models/plant-model';
 import { PlantService } from '../services/plant-service';
 import { criarPlantaSchema } from '../validators/plant-validator';
 
+
 export class PlantController { 
 
-    async criarPlanta (req: Request, res: Response): Promise<void> {
+    async criarPlanta (req: Request, res: Response): Promise<any> {
         try {
-            const plantaParsed = criarPlantaSchema.parse(req.body);
-            const novaPlanta = await PlantService.criarPlanta(plantaParsed);
+            const novaPlantaParsed = criarPlantaSchema.parse(req.body);
+            const novaPlanta = await PlantService.criarPlanta(novaPlantaParsed);
 
             res.status(201).json({
                 message: `Plantinha '${novaPlanta.nome}' cadastrada com sucesso :D`,
                 data: novaPlanta
             })
-       } catch (error) {
-            res.status(500).json({
+       } catch (error) {        
+             res.status(500).json({
                 message: 'Falha ao registrar a plantinha x_x',
                 error: (error as Error).message
-            })
-       }
+            });
+        }
     };
 
     async atualizarPlanta (req: Request, res: Response): Promise<any> {
         try {
+            // const nomePlantaParsed = atualizarPlantaSchema.parse(req.body.nome)
             const nomePlanta = req.body.nome;
 
             if (!nomePlanta || nomePlanta === 0) {
