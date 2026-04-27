@@ -1,13 +1,13 @@
 import { Request , Response } from 'express';
 import { IPlant } from '../models/plant-model'
 import { PlantService } from '../services/plant-service';
-import { createPlantSchema } from '../validators/plant-validator';
+import { criarPlantaSchema } from '../validators/plant-validator';
 
 export class PlantController { 
 
     async criarPlanta (req: Request, res: Response): Promise<void> {
         try {
-            const plantaParsed = createPlantSchema.parse(req.body);
+            const plantaParsed = criarPlantaSchema.parse(req.body);
             const novaPlanta = await PlantService.criarPlanta(plantaParsed);
 
             res.status(201).json({
