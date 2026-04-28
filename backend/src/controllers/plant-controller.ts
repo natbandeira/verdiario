@@ -1,7 +1,8 @@
 import { Request , Response } from 'express';
 import { IPlant } from '../models/plant-model';
 import { PlantService } from '../services/plant-service';
-import { criarPlantaSchema } from '../validators/plant-validator';
+import { criarPlantaSchema, buscarPlantaSchema } from '../validators/plant-validator';
+import { ZodError } from 'zod';
 
 
 export class PlantController { 
@@ -15,12 +16,18 @@ export class PlantController {
                 message: `Plantinha '${novaPlanta.nome}' cadastrada com sucesso :D`,
                 data: novaPlanta
             })
-       } catch (error) {        
-             res.status(500).json({
-                message: 'Falha ao registrar a plantinha x_x',
-                error: (error as Error).message
-            });
-        }
+        } catch (error) {       
+                if(error instanceof ZodError){
+                     return res.status(400).json({
+                        message: "Dados inválidos",
+                        errors: error.flatten()
+                     })
+                } 
+                return res.status(500).json({
+                    message: 'Falha ao registrar a plantinha x_x',
+                    error: (error as Error).message
+                });
+            }
     };
 
     async atualizarPlanta (req: Request, res: Response): Promise<any> {
@@ -59,19 +66,24 @@ export class PlantController {
 
     async mostrarPlanta (req: Request, res: Response): Promise<any> {
         try {
-            const nomePlanta = req.params.nomePlanta as string;
+            const nomePlantaParsed = buscarPlantaSchema.parse(req.params.nomePlanta);
+            const plantas = await PlantService.mostrarPlanta(nomePlantaParsed);
 
-            if (!nomePlanta) {
+            if (plantas.length === 0) {
                 return res.status(400).json({
-                    message: "Nome da planta é obrigatório!"
+                    message: `Nenhuma planta com o nome ${nomePlantaParsed} foi encontrada.`
                 })
             }
 
-            const planta = await PlantService.mostrarPlanta(nomePlanta);
-            res.status(200).json(planta);
+            res.status(200).json(plantas);
         } catch (error) {
-            console.error('Falha ao mostrar plantinha x_x');
-            res.status(500).json({
+            if(error instanceof ZodError){
+                return res.status(400).json({
+                    message: "Dados inválidos",
+                    errors: error.flatten()
+                })
+            }
+            return res.status(500).json({
                 message: 'Falha ao mostrar plantinha x_x',
                 error: (error as Error).message
             })
