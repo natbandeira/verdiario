@@ -6,16 +6,13 @@ export class PlantService {
         return await PlantModel.create(novaPlanta);
     };
 
-    static async atualizarPlanta(nomePlanta: string, novosDados: Partial<IPlant>): Promise<IPlantDocument> {
-        const plantaAtualizada = await PlantModel.findOneAndUpdate({nome: nomePlanta }, novosDados, { new: true }); // para retornar o documento atualizado
-        if(!plantaAtualizada) {
-            throw new Error(`Nenhuma planta com o nome '${nomePlanta}' foi encontrada :/`);
-        }
+    static async atualizarPlanta(id: string, novosDados: Partial<IPlant>): Promise<IPlantDocument | null> {
+        const plantaAtualizada = await PlantModel.findByIdAndUpdate(id, novosDados, { new: true });    
         return plantaAtualizada;
     };
 
-    static async mostrarPlanta(nomePlanta: string): Promise<IPlantDocument[]> {
-        return await PlantModel.find({ nome: nomePlanta });
+    static async mostrarPlantaPorId(id: string): Promise<IPlantDocument | null> {
+        return await PlantModel.findById(id);
     };
 
     static async mostrarEstufa(): Promise<IPlantDocument[]> {
