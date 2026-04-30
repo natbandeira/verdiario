@@ -26,4 +26,4 @@ export const atualizarPlantaSchema = z.object({
     plantaAtiva: z.boolean().optional()
 });
 
-export const buscarPlantaSchema = z.string().min(2, "Digite ao menos 3 caracteres para o nome da planta");
+export const buscarPlantaSchema = z.string().min(2, "Digite ao menos 2 caracteres para o nome da planta");
