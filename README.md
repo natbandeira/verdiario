@@ -28,8 +28,8 @@ Uma API RESTful para catalogar e gerenciar plantas, desenvolvida como parte de u
 - Next.js
 
 ### Documentação e testes
-- Swagger
-- Jest
+- Swagger UI: [http://localhost:3000/docs](http://localhost:3000/docs)
+- Testes: Jest
 
 ### Pré-requisitos
 - Node.js (v16 ou superior)
@@ -83,6 +83,8 @@ npm start
 
 
 
-<!-- <div align="center">
-  <sub>LinkedIn: [Natalia Bandeira](https://linkedin.com/in/nataliabandeira)</sub>
-</div> -->
+<div align="center">
+  <a href="https://linkedin.com/in/nataliabandeira">
+    <img src="https://img.shields.io/badge/LinkedIn-Natalia%20Bandeira-0A66C2?style=for-the-badge&logo=linkedin" />
+  </a>
+</div>
