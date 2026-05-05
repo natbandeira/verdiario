@@ -11,7 +11,7 @@ export class PlantService {
         return plantaAtualizada;
     };
 
-    static async mostrarPlantaPorId(id: string): Promise<IPlantDocument | null> {
+    static async buscarPlantaPorId(id: string): Promise<IPlantDocument | null> {
         return await PlantModel.findById(id);
     };
 

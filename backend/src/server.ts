@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-app.use('/api', router);
+app.use('/api/v1', router);
 
 const connectDB = async () => {
     const uri = process.env.MONGO_URI;

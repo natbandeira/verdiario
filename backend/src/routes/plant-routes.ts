@@ -5,7 +5,7 @@ const router = Router();
 const plantController = new PlantController();
 
 router.post('/planta', plantController.criarPlanta);
-router.get('/planta/:id', plantController.mostrarPlanta);
+router.get('/planta/:id', plantController.buscarPlanta);
 router.put('/planta/:id', plantController.atualizarPlanta);
 router.get('/estufa', plantController.mostrarEstufa);
 
