@@ -6,12 +6,12 @@ import { ZodError } from 'zod';
 
 export class PlantController { 
 
-    async criarPlanta (req: Request, res: Response): Promise<any> {
+    async criarPlanta (req: Request, res: Response): Promise<Response> {
         try {
             const novaPlantaParsed = criarPlantaSchema.parse(req.body);
             const novaPlanta = await PlantService.criarPlanta(novaPlantaParsed);
 
-            res.status(201).json({
+            return res.status(201).json({
                 message: `Plantinha '${novaPlanta.nome}' cadastrada com sucesso :D`,
                 data: novaPlanta
             })
@@ -19,7 +19,7 @@ export class PlantController {
                 if(error instanceof ZodError){
                      return res.status(400).json({
                         message: "Dados inválidos",
-                        errors: error.flatten()
+                        error: error.flatten()
                      })
                 } 
                 return res.status(500).json({
@@ -29,7 +29,7 @@ export class PlantController {
             }
     };
 
-    async atualizarPlanta (req: Request, res: Response): Promise<any> {
+    async atualizarPlanta (req: Request, res: Response): Promise<Response> {
         try {
             const id = req.params.id as string;
    
@@ -43,7 +43,7 @@ export class PlantController {
                 })
             }
             
-            res.status(200).json({
+            return res.status(200).json({
                 message: 'Plantinha atualizada com sucesso :D',
                 data: plantaAtualizada
             })
@@ -51,7 +51,7 @@ export class PlantController {
             if(error instanceof ZodError){
                 return res.status(400).json({
                     message: "Dados inválidos",
-                    errors: error.flatten()
+                    error: error.flatten()
                 })
             }
             return res.status(500).json({
@@ -61,11 +61,11 @@ export class PlantController {
         }
     };
 
-    async mostrarPlanta (req: Request, res: Response): Promise<any> {
+    async buscarPlanta (req: Request, res: Response): Promise<Response> {
         try {
             const id = req.params.id as string;
 
-            const planta = await PlantService.mostrarPlantaPorId(id);
+            const planta = await PlantService.buscarPlantaPorId(id);
 
             if (!planta) {
                 return res.status(404).json({
@@ -73,13 +73,16 @@ export class PlantController {
                 })
             }
 
-            res.status(200).json({planta});
+            return res.status(200).json({
+                message : `Aqui está a planta ${planta.nome}.`,
+                data: planta
+            });
 
         } catch (error) {
             if(error instanceof ZodError){
                 return res.status(400).json({
                     message: "Dados inválidos",
-                    errors: error.flatten()
+                    error: error.flatten()
                 })
             }
             return res.status(500).json({
@@ -89,12 +92,15 @@ export class PlantController {
         }
     };
 
-    async mostrarEstufa (req: Request, res: Response): Promise<void> {
+    async mostrarEstufa (req: Request, res: Response): Promise<Response> {
         try {
             const plantasEstufa = await PlantService.mostrarEstufa();
-            res.status(200).json({plantasEstufa});
+            return res.status(200).json({
+                message: 'Aqui estão todas suas plasntas cadastradas',
+                data: plantasEstufa
+            });
         } catch (error) {
-            res.status(500).json({
+            return res.status(500).json({
                 message: 'Falha ao mostrar plantinhas da estufa x_x',
                 error: (error as Error).message
             })
