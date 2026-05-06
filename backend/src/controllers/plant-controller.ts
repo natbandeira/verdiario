@@ -12,7 +12,7 @@ export class PlantController {
             const novaPlanta = await PlantService.criarPlanta(novaPlantaParsed);
 
             return res.status(201).json({
-                message: `Plantinha '${novaPlanta.nome}' cadastrada com sucesso :D`,
+                message: `Plantinha ${novaPlanta.nome} cadastrada com sucesso :D`,
                 data: novaPlanta
             })
         } catch (error) {       
@@ -23,7 +23,7 @@ export class PlantController {
                      })
                 } 
                 return res.status(500).json({
-                    message: 'Falha ao registrar a plantinha x_x',
+                    message: "Falha ao registrar a plantinha x_x",
                     error: (error as Error).message
                 });
             }
@@ -44,7 +44,7 @@ export class PlantController {
             }
             
             return res.status(200).json({
-                message: 'Plantinha atualizada com sucesso :D',
+                message: "Plantinha atualizada com sucesso :D",
                 data: plantaAtualizada
             })
         } catch (error) {
@@ -55,7 +55,7 @@ export class PlantController {
                 })
             }
             return res.status(500).json({
-                    message: 'Falha ao atualizar a plantinha x_x',
+                    message: "Falha ao atualizar a plantinha x_x",
                     error: (error as Error).message
                 })
         }
@@ -86,7 +86,7 @@ export class PlantController {
                 })
             }
             return res.status(500).json({
-                message: 'Falha ao mostrar plantinha x_x',
+                message: "Falha ao mostrar plantinha x_x",
                 error: (error as Error).message
             })
         }
@@ -96,12 +96,12 @@ export class PlantController {
         try {
             const plantasEstufa = await PlantService.mostrarEstufa();
             return res.status(200).json({
-                message: 'Aqui estão todas suas plasntas cadastradas',
+                message: "Aqui estão todas suas plasntas cadastradas",
                 data: plantasEstufa
             });
         } catch (error) {
             return res.status(500).json({
-                message: 'Falha ao mostrar plantinhas da estufa x_x',
+                message: "Falha ao mostrar plantinhas da estufa x_x",
                 error: (error as Error).message
             })
         }
